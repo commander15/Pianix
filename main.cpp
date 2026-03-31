@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     MainWindow win;
     win.show();
 
-    Device device("/dev/ttyACM0");
+    Device device(argc > 1 ? argv[1] : "/dev/ttyACM0");
     device.setBaudRate(9600);
     device.open(QIODevice::ReadOnly);
     QObject::connect(&device, &Device::notePlayRequested, &win, &MainWindow::playNote);
